@@ -1,0 +1,130 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+
+}
+
+/* Header styling */
+header {
+    background-color: #040c0a;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Logo styling */
+.logo img {
+    width: 100px; /* Adjust logo size */
+    height: auto;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* Search bar container */
+.search-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 700px; /* Increased max-width for a bigger search bar */
+    margin: 0 20px;
+}
+
+    /* Search input field */
+    .search-container input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px 0 0 20px;
+        outline: none;
+        font-size: 16px;
+    }
+
+    /* Search button */
+    .search-container button {
+        background-color: #91e9cf;
+        border: 1px solid #ccc;
+        border-left: none;
+        padding: 10px 20px;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .search-container button:hover {
+            background-color: #86e1c6;
+        }
+
+/* Additional button next to the search */
+/*.extra-button {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .extra-button:hover {
+        background-color: #e6e6e6;
+    */
+
+/* User manual link */
+.user-manual a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    background: #4eedbe;
+    color: black;
+}
+
+    .user-manual a:hover {
+        background: #98ffe1;
+        color:black;
+    }
+
+footer {
+    background-color: #040c0a; /* Same as the header for consistency */
+    color: white; /* Matches the user manual link */
+    text-align: center; /* Centers the text */
+    padding: 15px; /* Adds spacing */
+    font-size: 14px; /* Readable font size */
+    border-top: 1px solid #ddd; /* Subtle top border */
+    position: relative; /* Keeps it in normal flow */
+    bottom: 0;
+    width: 100%;
+}
+
+/* Ensure full-page height */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Push content to fill available space */
+.container {
+    flex: 1;
+}
+
+/* Footer stays at the bottom */
+footer {
+    background-color: #040c0a; /* Match header */
+    color: white; /* Matches theme */
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    margin-top: auto; /* Ensures footer is pushed down */
+}
+

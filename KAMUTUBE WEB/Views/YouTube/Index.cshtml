@@ -1,0 +1,26 @@
+﻿@model JArray
+
+<h2>YouTube Video Search</h2>
+
+<form method="post" asp-action="Search">
+    <input type="text" name="query" placeholder="Search YouTube..." required />
+    <button type="submit">Search</button>
+</form>
+
+@if (Model != null)
+{
+    <div>
+        @foreach (var video in Model)
+        {
+            var videoId = video["id"]["videoId"].ToString();
+            var title = video["snippet"]["title"].ToString();
+            <div>
+                <h3>@title</h3>
+                <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/@videoId"
+                        frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+        }
+    </div>
+}
