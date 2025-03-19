@@ -1,9 +1,9 @@
-﻿const API_KEY = "AIzaSyAr5DLcNEPgY4AGeu0AjYKnPTTmvaMBX9o"; // Replace with your actual API key
+﻿const API_KEY = "AIzaSyAr5DLcNEPgY4AGeu0AjYKnPTTmvaMBX9o"; //API key
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const resultsContainer = document.getElementById("results");
 
-// Default search when the page loads
+// Default search 
 document.addEventListener("DOMContentLoaded", function () {
     searchYouTube("University Poly-Tech Malaysia");
 });
@@ -50,13 +50,32 @@ function displayResults(videos) {
         let channelTitle = video.snippet.channelTitle;
         let description = video.snippet.description;
         let thumbnail = video.snippet.thumbnails.medium.url;
-
+        let publishDate = new Date(video.snippet.publishedAt).toLocaleDateString(); // Format date
+        // empty description
+        if (!description || description.trim() === "") {
+            description = "This video does not include a description.";
+        }
         let videoElement = `
-    <div class="video" onclick="playVideo('${videoId}', '${title.replace(/'/g, "\\'")}')">
-
+        <div class="video" onclick="playVideo('${videoId}', '${title.replace(/'/g, "\\'")}', '${description.replace(/'/g, "\\'")}')">
         <img src="${thumbnail}"  />
             <p class="video-title" >${title}</p>
+            <p class="video-channel">${description}</p>
+
+            <table style="float=right;">
+            <tr>
+            <th>
             <p class="video-channel">${channelTitle}</p>
+            <th>
+            </tr>
+            <tr>
+            <td>
+            <p class="video-date">${publishDate}</p>
+            </table>
+            <td>
+            </tr>
+
+            
+
     </div>
     <style>
 #results {
@@ -65,7 +84,7 @@ function displayResults(videos) {
     gap: 20px; /* More spacing between videos */
     padding: 20px;
     width: 100%;
-    max-width: 900px; /* Increase max width */
+    max-width: 1300px; /* Increase max width */
     margin: 0 auto; /* Center align */
 }
 
@@ -120,7 +139,11 @@ function displayResults(videos) {
     });
 }
 
-function playVideo(videoId, title) {
+function playVideo(videoId, title, description) {
+    // empty description
+    if (!description || description.trim() === "") {
+        description = "This video does not include a description.";
+    }
     resultsContainer.innerHTML = `
     <div id="PlayVid">
         <iframe width="560" height="315" 
@@ -128,31 +151,45 @@ function playVideo(videoId, title) {
                 frameborder="0" allowfullscreen>
         </iframe>
         <p class="video-title">${title}</p>
+        <p class="video-description">${description}</p>
         <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">Go to YouTube</a>
     </div>
-        <style>
-        iframe{
-            display:flex;
-            margin:30px auto;
+    <style>
+        iframe {
+            display: flex;
+            margin: 30px auto;
             border: 1px solid black;
-            borer-radius:8px;
+            border-radius: 8px;
         }
-        #PlayVid{
-            text-align:center;
+        #PlayVid {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .video-title{
-            font-weight:bold;
-            font-size:25px;
-        }
-        a{
-            text-decoration:none;
-            border:1px solid black;
-            border-radius:8px;
-            padding:8px;
-            background-color:black;
-            color:white;
+        .video-title {
             font-weight: bold;
+            font-size: 25px;
+            margin: 10px 0;
         }
-        </style>
+        .video-description {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.4;
+            margin: 10px 20px;
+            text-align: justify;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 8px;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
     `;
 }
+
